@@ -1,6 +1,6 @@
-# Tauri + React + Typescript + Biome + shadcn/ui
+# Tauri + React + Typescript + shadcn/ui
 
-This template should help get you started developing with Tauri, React, and Typescript in Vite. It is very opinionated.
+This template should help get you started developing with Tauri, React, and Typescript in Vite.
 
 #### License
 

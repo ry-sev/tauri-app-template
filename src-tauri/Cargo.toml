@@ -2,7 +2,7 @@
 name = "tauri-app"
 version = "0.1.0"
 authors = ["you"]
-edition = "2021"
+edition = "2024"
 description = "A Tauri App"
 readme = "../README.md"
 repository = ""
@@ -17,20 +17,22 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 tauri-build = { version = "2", features = [] }
 
 [dependencies]
-tauri = { version = "2.2.5", features = [] }
-tauri-plugin-shell = "2.2.0"
-serde = { version = "1.0.217", features = ["derive"] }
-serde_json = "1.0.137"
-
-[profile.dev]
-incremental = true
-panic = "abort"
+tauri = { version = "2", features = [] }
+tauri-plugin-opener = "2"
+tauri-plugin-shell = "2"
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.140"
 
 [profile.release]
-codegen-units = 1
-lto = true
-panic = "abort"
-strip = true
+opt-level = 3     # override size optimization with max speed optimization
+strip = "symbols" # remove all debug symbols and symbols
+lto = true        # enable full link-time optimization
+codegen-units = 1 # force single codegen unit for maximum optimization
+panic = "abort"   # remove panic runtime, reducing binary size
+
+[profile.small]
+inherits = "release"
+opt-level = "z"      # optimize for size instead of speed
 
 [lints.rust]
 unsafe_code = "deny"
